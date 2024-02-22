@@ -86,8 +86,12 @@ corners = [
     [-tag_size_2, tag_size_2]
 ]
 tag_dict = {}
-
-
+tag_dict["tag_family"] = tag_family
+tag_dict["tag_size"] = tag_size
+tag_dict["row"] = row
+tag_dict["col"] = col
+tag_dict["tag_spacing"] = tag_spacing
+tag_dict["tag_obj_points"]={}
 for y in range(row):
     for x in range(col):
         index = y*col+x
@@ -103,7 +107,7 @@ for y in range(row):
             "center": center,
             "corners": corners_i
         }
-        tag_dict[index] = data
+        tag_dict["tag_obj_points"][index] = data
 
         for i in range(4):
             c = corners_i[i]
