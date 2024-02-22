@@ -4,7 +4,7 @@ from tagdef.tag25h9 import tag25h9
 from tagdef.tag36h11 import tag36h11
 from tagdef.tag16h5 import tag16h5
 import argparse
-tag_generator_dict={
+tag_generator_dict = {
     "tag25h9": tag25h9,
     "tag36h11": tag36h11,
     "tag16h5": tag16h5
@@ -23,19 +23,30 @@ ap.add_argument("-s", "--tag_size", required=True,)
 ap.add_argument("-r", "--row", required=True,)
 ap.add_argument("-c", "--col", required=True,)
 ap.add_argument("-t", "--tag_spacing", required=True,)
-ap.add_argument("-o", "--output", required=False,default="apriltag_board")
+ap.add_argument("-o", "--output", required=False, default="apriltag_board")
+ap.add_argument("-ds", "--draw_spacing", required=False,action='store_true',
+                help="draw tag spacing")
+ap.add_argument("-di", "--draw_id", required=False,action='store_true',
+                help="draw tag id")
+ap.add_argument("-dg", "--draw_grid", required=False,action='store_true',
+                help="draw grid")
+
 
 args = ap.parse_args()
+draw_spacing = args.draw_spacing
+draw_id = args.draw_id
+draw_grid = args.draw_grid
+
 tag_family = args.tag_family
 tag_size = float(args.tag_size)
 row = int(args.row)
 col = int(args.col)
 tag_spacing = float(args.tag_spacing)
-output_path=args.output
-svg_path=f"{output_path}.svg"
-png_path=f"{output_path}.png"
-vis_path=f"{output_path}_vis.png"
-yaml_path=f"{output_path}.yaml"
+output_path = args.output
+svg_path = f"{output_path}.svg"
+png_path = f"{output_path}.png"
+vis_path = f"{output_path}_vis.png"
+yaml_path = f"{output_path}.yaml"
 
 
 tag_generator = tag_generator_dict[tag_family]()
@@ -56,9 +67,7 @@ apriltag_board_svg.append(drawsvg.Text(f"tag family: {tag_family} row: {row} col
                                        font_size=tag_spacing/5,
                                        fill='black',
                                        text_anchor='left',))
-draw_spacing = False
-draw_id = False
-draw_grid = False
+
 for y in range(row):
     for x in range(col):
         index = y*col+x
@@ -91,7 +100,7 @@ tag_dict["tag_size"] = tag_size
 tag_dict["row"] = row
 tag_dict["col"] = col
 tag_dict["tag_spacing"] = tag_spacing
-tag_dict["tag_obj_points"]={}
+tag_dict["tag_obj_points"] = {}
 for y in range(row):
     for x in range(col):
         index = y*col+x
