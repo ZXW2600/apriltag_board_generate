@@ -4,6 +4,7 @@ from tagdef.tag25h9 import tag25h9
 from tagdef.tag36h11 import tag36h11
 from tagdef.tag16h5 import tag16h5
 import argparse
+import os
 tag_generator_dict = {
     "tag25h9": tag25h9,
     "tag36h11": tag36h11,
@@ -48,7 +49,10 @@ png_path = f"{output_path}.png"
 vis_path = f"{output_path}_vis.png"
 yaml_path = f"{output_path}.yaml"
 
-
+folder=os.path.dirname(output_path)
+if not os.path.exists(folder):
+    os.makedirs(folder)
+    
 tag_generator = tag_generator_dict[tag_family]()
 
 apriltag_board_width = col*tag_size+(col+1)*tag_spacing
