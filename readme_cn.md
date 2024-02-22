@@ -1,10 +1,10 @@
-# a simple tool to generate apriltag gird
+# 生成Apriltag标定板的工具
 
-This tool can generate png and svg with a detailed config file，[中文说明](readme_cn.md)
+本脚本用于生成apriltag grid 标定板矢量图、像素图以及相应的配置文件信息，可用于标定等用途。
 
-## example pattern
+## 示例
 
-usage
+脚本参数
 
 ```shell
 usage: apriltag_generate.py [-h] -f TAG_FAMILY -s TAG_SIZE -r ROW -c COL -t TAG_SPACING [-o OUTPUT] [-ds] [-di] [-dg]
@@ -22,15 +22,15 @@ options:
   -dg, --draw_grid      draw grid
 ```
 
-parameter TAG_SIZE and TAG_SPACING unit is m.
+其中参数 TAG_SIZE 、 TAG_SPACING 单位是米.
 
-example
+举例
 
 ```shell
 apriltag_generate.py -f tag36h11 -s 0.0164 -r 6 -c 8 -t 0.0082 -o output/update_test  -di
 ```
 
-which means generate an 6x8 tag36h11 gird with 0.0164m tagwidth and 0.0082m spacing and draw tag id.
+使用tag36h11创建6行8列的标定板，tag边长0.0164m，边到边间隔0.0082m ，输出到output/update_test文件， 绘制tag id
 
 ![alt text](./.assert/update_test.png)
 
